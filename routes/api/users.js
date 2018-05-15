@@ -21,7 +21,7 @@ const User = require("../../models/User");
 router.get("/test", (req, res) => res.json({ msg: "Users Works!" }));
 
 // This is one of the endpoints, and it responds to the users request.
-// @route   GET api/users/register
+// @route   POST api/users/register
 // @desc    Register user
 // @access  Public
 router.post("/register", (req, res) => {
