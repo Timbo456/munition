@@ -21,6 +21,12 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           {/* Changed from 'a' to Link and changed  href to 'to' */}
+          <Link className="nav-link" to="/feed">
+            Post Feed
+          </Link>
+        </li>
+        <li className="nav-item">
+          {/* Changed from 'a' to Link and changed  href to 'to' */}
           <Link className="nav-link" to="/dashboard">
             Dashboard
           </Link>
@@ -103,6 +109,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
-  Navbar
-);
+export default connect(
+  mapStateToProps,
+  { logoutUser, clearCurrentProfile }
+)(Navbar);
