@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import GoogleLogin from "react-google-login";
+// import FacebookLogin from "react-facebook-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
@@ -17,6 +20,42 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  /// FROM AUTH VIDEO
+  signup(res, type) {
+    let postData;
+    if (type === "facebook" && res.email) {
+      postData = {
+        name: res.name,
+        provider: type,
+        email: res.email,
+        provider_id: res.id,
+        token: res.accessToken,
+        provider_pic: res.providerpic
+      };
+    }
+
+    if (type === "google" && res.w3.U3) {
+      postData = {
+        name: res.w3.ig,
+        provider: type,
+        email: res.w3.U3,
+        provider_id: res.EL,
+        token: res.zi.access_Token,
+        provider_pic: res.w3.paa
+      };
+    }
+
+    loginUser("login", this.state).then(result => {
+      let responseJson = result;
+      if (responseJson.userData) {
+        sessionStorage.setItem("userData", JSON.stringify(responseJson));
+        this.setState({ errors: true });
+      }
+    });
+  }
+
+  ///// End youtube login vid stuff
+
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
@@ -32,6 +71,7 @@ class Login extends Component {
       this.setState({ errors: nextProps.errors });
     }
   }
+
   /// This is calling the action "loginUser" from authActions.js
   onSubmit(e) {
     e.preventDefault();
@@ -47,9 +87,19 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   render() {
     const { errors } = this.state;
 
+    // FROM AUTH YOUTUBE VID
+    const responseFacebook = response => {
+      console.log(response);
+    };
+
+    const responseGoogle = response => {
+      console.log(response);
+    };
+    /// Not from vid keep all this stuff
     return (
       <div className="login">
         <div className="container">
@@ -57,8 +107,28 @@ class Login extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">
-                Sign in to your DevConnector account
+                Sign in to your Munition account
               </p>
+              <GoogleLogin
+                clientId="818858352397-q85q3mmq23n706hq690b9trlp70j0iai.apps.googleusercontent.com"
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+              />
+
+              <FacebookLogin
+                appId="1827008524270998"
+                autoLoad={true}
+                fields="name,email,picture"
+                // onClick={componentClicked}
+                callback={responseFacebook}
+                render={renderProps => (
+                  <button onClick={renderProps.onClick}>
+                    This is my custom FB button
+                  </button>
+                )}
+              />
+              <p />
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Email Address"
@@ -68,7 +138,6 @@ class Login extends Component {
                   onChange={this.onChange}
                   error={errors.email}
                 />
-
                 <TextFieldGroup
                   placeholder="Password"
                   name="password"
@@ -99,4 +168,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

@@ -175,10 +175,10 @@ class CreateProfile extends Component {
     // Select options for status
     const options = [
       { label: "* Select Professional Status", value: 0 },
-      { label: "Developer", value: "Developer" },
-      { label: "Junior Developer", value: "Junior Developer" },
-      { label: "Manager", value: "Manager" },
-      { label: "Student or Learner", value: "Student or Learner" },
+      { label: "Mechanic", value: "Mechanic" },
+      { label: "Technician", value: "Technician" },
+      { label: "Shop Owner", value: "Shop Owner" },
+      { label: "Student", value: "Student" },
       { label: "Instructor or Teacher", value: "Instructor or Teacher" },
       { label: "Intern", value: "Intern" },
       { label: "Other", value: "Other" }
@@ -243,7 +243,7 @@ class CreateProfile extends Component {
                   value={this.state.skills}
                   onChange={this.onChange}
                   error={errors.skills}
-                  info="Please use comma seperated values (eg. PHP, Java, HTML, etc)"
+                  info="Please use comma seperated values (eg. Mechanic, Welder, Engineer, etc)"
                 />
                 <TextFieldGroup
                   placeholder="Github Username"
@@ -303,6 +303,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
-  withRouter(CreateProfile)
-);
+export default connect(
+  mapStateToProps,
+  { createProfile, getCurrentProfile }
+)(withRouter(CreateProfile));

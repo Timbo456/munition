@@ -69,7 +69,10 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your Munition account</p>
+
+              <p className="lead text-center">
+                Create your Munition account to check out posts
+              </p>
 
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -128,4 +131,7 @@ const mapStateToProps = state => ({
 });
 
 //added the "connect()" for exporting with connect, the bridge from react to redux
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));

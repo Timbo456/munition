@@ -55,7 +55,7 @@ class Navbar extends Component {
         <li className="nav-item">
           {/* Changed from 'a' to Link and changed  href to 'to' */}
           <Link className="nav-link" to="/register">
-            Sign Up
+            Posts
           </Link>
         </li>
         <li className="nav-item">
