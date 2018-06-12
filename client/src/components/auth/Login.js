@@ -111,7 +111,7 @@ class Login extends Component {
               </p>
               <GoogleLogin
                 clientId="818858352397-q85q3mmq23n706hq690b9trlp70j0iai.apps.googleusercontent.com"
-                buttonText="Login"
+                buttonText="Login w/ google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
               />
@@ -124,7 +124,7 @@ class Login extends Component {
                 callback={responseFacebook}
                 render={renderProps => (
                   <button onClick={renderProps.onClick}>
-                    This is my custom FB button
+                    Login with Facebook
                   </button>
                 )}
               />
