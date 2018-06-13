@@ -109,9 +109,11 @@ class Login extends Component {
               <p className="lead text-center">
                 Sign in to your Munition account
               </p>
+
               <GoogleLogin
                 clientId="818858352397-q85q3mmq23n706hq690b9trlp70j0iai.apps.googleusercontent.com"
-                buttonText="Login w/ google"
+                className="btn btn-info btn-block mt-4"
+                //buttonText="Login w/ google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
               />
