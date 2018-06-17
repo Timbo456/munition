@@ -24,9 +24,10 @@ class Dashboard extends Component {
     let dashboardContent;
 
     if (profile === null || loading) {
+      /// Remove and replace the spinner
       dashboardContent = <Spinner />;
     } else {
-      // Check if logged in user has profile data
+      // Check if logged in user has profile data 
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
