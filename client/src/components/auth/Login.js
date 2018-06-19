@@ -124,6 +124,8 @@ class Login extends Component {
                   autoLoad={true}
                   fields="name,email,picture"
                   // onClick={componentClicked}
+
+                  onChange={this.onChange}
                   callback={responseFacebook}
                   render={renderProps => (
                     <button onClick={renderProps.onClick}>
