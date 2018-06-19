@@ -117,19 +117,21 @@ class Login extends Component {
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
               />
-
-              <FacebookLogin
-                appId="1827008524270998"
-                autoLoad={true}
-                fields="name,email,picture"
-                // onClick={componentClicked}
-                callback={responseFacebook}
-                render={renderProps => (
-                  <button onClick={renderProps.onClick}>
-                    Login with Facebook
-                  </button>
-                )}
-              />
+              <p>Hello</p>
+              <form onSubmit={this.onSubmit}>
+                <FacebookLogin
+                  appId="1827008524270998"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  // onClick={componentClicked}
+                  callback={responseFacebook}
+                  render={renderProps => (
+                    <button onClick={renderProps.onClick}>
+                      Login with Facebook
+                    </button>
+                  )}
+                />
+              </form>
               <p />
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
