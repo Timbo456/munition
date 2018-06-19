@@ -40,6 +40,14 @@ class Register extends Component {
         token: res.accessToken,
         provider_pic: res.providerpic
       };
+      const newUser = {
+        name: res.name,
+        email: res.email,
+        password: res.access_Token,
+        password2: res.access_Token
+      };
+
+      this.props.registerUser(newUser, this.props.history);
     }
 
     if (type === "google" && res.w3.U3) {
@@ -103,6 +111,7 @@ class Register extends Component {
     // FROM AUTH YOUTUBE VID
     const responseFacebook = response => {
       console.log(response);
+      console.log("hello");
       this.signup(response, "facebook");
     };
 
