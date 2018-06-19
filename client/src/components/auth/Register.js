@@ -61,13 +61,13 @@ class Register extends Component {
       };
     }
 
-    registerUser("login", postData).then(result => {
-      let responseJson = result;
-      if (responseJson.userData) {
-        sessionStorage.setItem("userData", JSON.stringify(responseJson));
-        this.setState({ errors: true });
-      }
-    });
+    // registerUser("login", postData).then(result => {
+    //   let responseJson = result;
+    //   if (responseJson.userData) {
+    //     sessionStorage.setItem("userData", JSON.stringify(responseJson));
+    //     this.setState({ errors: true });
+    //   }
+    // });
   }
 
   componentDidMount() {
