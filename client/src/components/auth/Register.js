@@ -138,7 +138,7 @@ class Register extends Component {
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
               />
-              <p>Hello</p>
+              <p>Hello PP </p>
 
               <FacebookLogin
                 appId="1827008524270998"
