@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import GoogleLogin from "react-google-login";
+// import GoogleLogin from "react-google-login";
 // import FacebookLogin from "react-facebook-login";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+// import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
@@ -21,38 +21,38 @@ class Login extends Component {
   }
 
   /// FROM AUTH VIDEO
-  signup(res, type) {
-    let postData;
-    if (type === "facebook" && res.email) {
-      postData = {
-        name: res.name,
-        provider: type,
-        email: res.email,
-        provider_id: res.id,
-        token: res.accessToken,
-        provider_pic: res.providerpic
-      };
-    }
+  // signup(res, type) {
+  //   let postData;
+  //   if (type === "facebook" && res.email) {
+  //     postData = {
+  //       name: res.name,
+  //       provider: type,
+  //       email: res.email,
+  //       provider_id: res.id,
+  //       token: res.accessToken,
+  //       provider_pic: res.providerpic
+  //     };
+  //   }
 
-    if (type === "google" && res.w3.U3) {
-      postData = {
-        name: res.w3.ig,
-        provider: type,
-        email: res.w3.U3,
-        provider_id: res.EL,
-        token: res.zi.access_Token,
-        provider_pic: res.w3.paa
-      };
-    }
+  //   if (type === "google" && res.w3.U3) {
+  //     postData = {
+  //       name: res.w3.ig,
+  //       provider: type,
+  //       email: res.w3.U3,
+  //       provider_id: res.EL,
+  //       token: res.zi.access_Token,
+  //       provider_pic: res.w3.paa
+  //     };
+  //   }
 
-    loginUser("login", this.state).then(result => {
-      let responseJson = result;
-      if (responseJson.userData) {
-        sessionStorage.setItem("userData", JSON.stringify(responseJson));
-        this.setState({ errors: true });
-      }
-    });
-  }
+  //   loginUser("login", this.state).then(result => {
+  //     let responseJson = result;
+  //     if (responseJson.userData) {
+  //       sessionStorage.setItem("userData", JSON.stringify(responseJson));
+  //       this.setState({ errors: true });
+  //     }
+  //   });
+  // }
 
   ///// End youtube login vid stuff
 
@@ -92,13 +92,13 @@ class Login extends Component {
     const { errors } = this.state;
 
     // FROM AUTH YOUTUBE VID
-    const responseFacebook = response => {
-      console.log(response);
-    };
+    // const responseFacebook = response => {
+    //   console.log(response);
+    // };
+    // const responseGoogle = response => {
+    //   console.log(response);
+    // };
 
-    const responseGoogle = response => {
-      console.log(response);
-    };
     /// Not from vid keep all this stuff
     return (
       <div className="login">
@@ -110,7 +110,7 @@ class Login extends Component {
                 Sign in to your Munition account
               </p>
 
-              <GoogleLogin
+              {/* <GoogleLogin
                 clientId="818858352397-q85q3mmq23n706hq690b9trlp70j0iai.apps.googleusercontent.com"
                 className="btn btn-info btn-block mt-4"
                 //buttonText="Login w/ google"
@@ -118,22 +118,21 @@ class Login extends Component {
                 onFailure={responseGoogle}
               />
               <p>Hello</p>
-              <form onSubmit={this.onSubmit}>
-                <FacebookLogin
-                  appId="1827008524270998"
-                  autoLoad={true}
-                  fields="name,email,picture"
-                  // onClick={componentClicked}
 
-                  onChange={this.onChange}
-                  callback={responseFacebook}
-                  render={renderProps => (
-                    <button onClick={renderProps.onClick}>
-                      Login with Facebook
-                    </button>
-                  )}
-                />
-              </form>
+              <FacebookLogin
+                appId="1827008524270998"
+                autoLoad={true}
+                fields="name,email,picture"
+                // onClick={componentClicked}
+
+                callback={responseFacebook}
+                render={renderProps => (
+                  <button onClick={renderProps.onClick}>
+                    Login with Facebook
+                  </button>
+                )}
+              /> */}
+
               <p />
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup

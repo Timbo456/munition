@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
@@ -22,6 +24,42 @@ class Register extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.signup = this.signup.bind(this);
+  }
+
+  // From AUTH video fb/google
+
+  signup(res, type) {
+    let postData;
+    if (type === "facebook" && res.email) {
+      postData = {
+        name: res.name,
+        provider: type,
+        email: res.email,
+        provider_id: res.id,
+        token: res.accessToken,
+        provider_pic: res.providerpic
+      };
+    }
+
+    if (type === "google" && res.w3.U3) {
+      postData = {
+        name: res.w3.ig,
+        provider: type,
+        email: res.w3.U3,
+        provider_id: res.EL,
+        token: res.zi.access_Token,
+        provider_pic: res.w3.paa
+      };
+    }
+
+    registerUser("login", postData).then(result => {
+      let responseJson = result;
+      if (responseJson.userData) {
+        sessionStorage.setItem("userData", JSON.stringify(responseJson));
+        this.setState({ errors: true });
+      }
+    });
   }
 
   componentDidMount() {
@@ -31,7 +69,6 @@ class Register extends Component {
   }
 
   // This is a "Lifecycle Method"? Look this up
-  // Said he is doing this instead of changing state to props on line 58ish
   // Said that this runs when you component recieves new properties
   // This is seting the Redux state possibly?
   componentWillReceiveProps(nextProps) {
@@ -63,6 +100,17 @@ class Register extends Component {
     //could use props here instead of state
     const { errors } = this.state;
 
+    // FROM AUTH YOUTUBE VID
+    const responseFacebook = response => {
+      console.log(response);
+      this.signup(response, "facebook");
+    };
+
+    const responseGoogle = response => {
+      console.log(response);
+      this.signup(response, "google");
+    };
+
     return (
       <div className="register">
         <div className="container">
@@ -73,6 +121,31 @@ class Register extends Component {
               <p className="lead text-center">
                 Create your Munition account to check out posts
               </p>
+
+              <GoogleLogin
+                clientId="818858352397-q85q3mmq23n706hq690b9trlp70j0iai.apps.googleusercontent.com"
+                className="btn btn-info btn-block mt-4"
+                //buttonText="Login w/ google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+              />
+              <p>Hello</p>
+
+              <FacebookLogin
+                appId="1827008524270998"
+                autoLoad={true}
+                fields="name,email,picture"
+                // onClick={componentClicked}
+
+                callback={responseFacebook}
+                render={renderProps => (
+                  <button onClick={renderProps.onClick}>
+                    Login with Facebook
+                  </button>
+                )}
+              />
+
+              <p />
 
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -90,7 +163,7 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onChange}
                   error={errors.email}
-                  info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
+                  info="This site uses Gravatar so if you want a profile image, use a Graavatar email"
                 />
 
                 <TextFieldGroup
