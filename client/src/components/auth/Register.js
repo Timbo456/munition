@@ -24,34 +24,31 @@ class Register extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.signup = this.signup.bind(this);
+    //this.signup = this.signup.bind(this);
   }
 
   // From AUTH video fb/google
 
   signup(res, type) {
-    let postData;
-    if (type === "facebook" && res.email) {
-      postData = {
-        name: res.name,
-        provider: type,
-        email: res.email,
-        provider_id: res.id,
-        token: res.accessToken,
-        provider_pic: res.providerpic
-      };
-      const newUser = {
-        name: res.name,
-        email: res.email,
-        password: res.access_Token,
-        password2: res.access_Token
-      };
+    // let postData;
 
-      this.props.registerUser(newUser, this.props.history);
+    if (type === "facebook" && res.email) {
+      const newUser1 = {
+        name: res.name,
+        email: res.email,
+        password: res.accessToken,
+        password2: res.accessToken
+      };
+      console.log("YELLOOOOOW");
+      console.log(newUser1.name);
+      console.log(newUser1.password);
+      console.log("DOOOoG");
+      this.props.registerUser(newUser1, this.props.newUser1);
+      this.props.history.push("/dashboard");
     }
 
     if (type === "google" && res.w3.U3) {
-      postData = {
+      const newUser = {
         name: res.w3.ig,
         provider: type,
         email: res.w3.U3,
@@ -59,6 +56,8 @@ class Register extends Component {
         token: res.zi.access_Token,
         provider_pic: res.w3.paa
       };
+      console.log("GOOGLESHIT");
+      registerUser(newUser, newUser.history);
     }
 
     // registerUser("login", postData).then(result => {
@@ -86,7 +85,7 @@ class Register extends Component {
   }
 
   // The 'e' is an event parameter
-  // For inputs in signup page
+  // For inputs in sign up page
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -111,7 +110,6 @@ class Register extends Component {
     // FROM AUTH YOUTUBE VID
     const responseFacebook = response => {
       console.log(response);
-      console.log("hello");
       this.signup(response, "facebook");
     };
 
@@ -142,10 +140,9 @@ class Register extends Component {
 
               <FacebookLogin
                 appId="1827008524270998"
-                autoLoad={true}
+                autoLoad={false}
                 fields="name,email,picture"
                 // onClick={componentClicked}
-
                 callback={responseFacebook}
                 render={renderProps => (
                   <button onClick={renderProps.onClick}>
