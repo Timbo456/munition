@@ -169,7 +169,7 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onChange}
                   error={errors.email}
-                  info="This site uses Gravatar so if you want a profile image, use a Graavatar email"
+                  info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
 
                 <TextFieldGroup
