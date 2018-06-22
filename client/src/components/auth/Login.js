@@ -110,7 +110,7 @@ class Login extends Component {
                 Sign in to your Munition account
               </p>
 
-              <GoogleLogin
+              {/* <GoogleLogin
                 clientId="818858352397-q85q3mmq23n706hq690b9trlp70j0iai.apps.googleusercontent.com"
                 className="btn btn-info btn-block mt-4"
                 //buttonText="Login w/ google"
@@ -131,7 +131,7 @@ class Login extends Component {
                     Login with Facebook
                   </button>
                 )}
-              />
+              /> */}
 
               <p />
               <form onSubmit={this.onSubmit}>
