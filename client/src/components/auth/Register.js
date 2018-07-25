@@ -27,7 +27,10 @@ class Register extends Component {
     //this.signup = this.signup.bind(this);
   }
 
-  // From AUTH video fb/google
+  //////////////////////////
+  /// FROM GOOG/FB  VIDEO///
+  //////////////////////////
+  
 
   signup(res, type) {
     // let postData;
@@ -68,7 +71,8 @@ class Register extends Component {
     //   }
     // });
   }
-
+///   END OF GOOG/FB //////
+////////////////////////////////////////////////////////////////
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
@@ -104,19 +108,21 @@ class Register extends Component {
   }
 
   render() {
-    //could use props here instead of state
+    
     const { errors } = this.state;
 
-    // FROM AUTH YOUTUBE VID
+    ///////// FROM AUTH YOUTUBE VID///////////
     const responseFacebook = response => {
       console.log(response);
       this.signup(response, "facebook");
     };
-
-    const responseGoogle = response => {
-      console.log(response);
-      this.signup(response, "google");
-    };
+                                           
+    const responseGoogle = response => {  
+      console.log(response);             
+      this.signup(response, "google");   
+    };                                   
+    ////      END FB/GOOG SECTION
+    /////////////////////////////////////////
 
     return (
       <div className="register">
@@ -129,14 +135,16 @@ class Register extends Component {
                 Create your Munition account to check out posts
               </p>
 
+              
               <GoogleLogin
                 clientId="818858352397-q85q3mmq23n706hq690b9trlp70j0iai.apps.googleusercontent.com"
                 className="btn btn-info btn-block mt-4"
                 //buttonText="Login w/ google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
+                
               />
-              <p>Hello PP </p>
+              <p>HelLooO </p>
 
               <FacebookLogin
                 appId="1827008524270998"
