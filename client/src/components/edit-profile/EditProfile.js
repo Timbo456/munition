@@ -261,8 +261,8 @@ class CreateProfile extends Component {
                   error={errors.bio}
                   info="Tell us a little about yourself"
                 />
-
-                <div className="mb-3">
+                <p>
+                <div className="mb-4">
                   <button
                     type="button"
                     onClick={() => {
@@ -270,23 +270,33 @@ class CreateProfile extends Component {
                         displaySocialInputs: !prevState.displaySocialInputs
                       }));
                     }}
-                    className="btn btn-light"
+                    className="btn btn-primary"
                   >
                     Add Social Network Links
                   </button>
-                  <span className="text-muted">Optional</span>
+                  <span className="text-muted m-1">Optional</span>
                 </div>
                 {socialInputs}
+                
                 <input
+                  className="btn btn-info btn-block m-5 "
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  // className="btn btn-info btn-block m-15 "
                 />
+              </p>  
               </form>
+              
+              <p></p>
             </div>
           </div>
+          <p></p>
+          <p></p>
         </div>
+        <p></p>
+        <p></p>
       </div>
+      
     );
   }
 }
